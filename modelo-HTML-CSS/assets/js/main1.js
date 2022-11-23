@@ -21,7 +21,7 @@ const form = document.getElementById('formulario');
             
             res2.innerHTML="<img src='https://media4.giphy.com/media/26FLdmIp6wJr91JAI/giphy.gif?cid=ecf05e47nci71r3i5bnrfpims9tbada7wz4diwg1ucg9hlon&rid=giphy.gif&ct=g'>"
 
-            res2.innerHTML+= "<img src='https://media2.giphy.com/media/USDLzEBaDObgWuWywy/200w.webp?cid=ecf05e47amrh8e4itu2io3uqs87j6uz3qxfs14s955ht2ctu&rid=200w.webp&ct=g'/> "
+            res2.innerHTML+= "<img src='https://media2.giphy.com/media/USDLzEBaDObgWuWywy/200w.webp?cid=ecf05e47amrh8e4itu2io3uqs87j6uz3qxfs14s955ht2ctu&rid=200w.webp&ct=g' width='480' height='270'/> "
         }
 
         // if (imc <= 18.5){
