@@ -15,10 +15,13 @@ const form = document.getElementById('formulario');
             return hex
         };
          if (imc >=1 && imc <= 60){
-            resultado.innerHTML = `Você está parfeita gata, nao precisa mudar nada 😉`
+            resultado.innerHTML = `Você é perfeita gata, eu não mudaria nada em você 😉`
             resultado.style.backgroundColor+= 'green';
             resultado.style.color += 'white'
+            
             res2.innerHTML="<img src='https://media4.giphy.com/media/26FLdmIp6wJr91JAI/giphy.gif?cid=ecf05e47nci71r3i5bnrfpims9tbada7wz4diwg1ucg9hlon&rid=giphy.gif&ct=g'>"
+
+            res2.innerHTML+= "<img src='https://media2.giphy.com/media/USDLzEBaDObgWuWywy/200w.webp?cid=ecf05e47amrh8e4itu2io3uqs87j6uz3qxfs14s955ht2ctu&rid=200w.webp&ct=g'/> "
         }
 
         // if (imc <= 18.5){
