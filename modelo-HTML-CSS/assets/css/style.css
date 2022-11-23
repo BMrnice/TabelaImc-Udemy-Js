@@ -72,4 +72,5 @@ tbody > tr:nth-child(2n){ /*Comando para dar efeito zebrado */
 
 .res {
   text-align: center;
+  padding: 10px;
 }

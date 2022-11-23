@@ -10,6 +10,7 @@ const form = document.getElementById('formulario');
         let imc = parsePeso / (parseAltura*parseAltura);
         let imcCon = imc.toFixed(2)// convertido para 2 decimal apos virgula
         let resultado = document.getElementById('resultado')
+        let res2 = document.getElementById('resultado2')
         function lumiance(hex, luminosity = 0){
             return hex
         };
@@ -17,6 +18,7 @@ const form = document.getElementById('formulario');
             resultado.innerHTML = `Você está parfeita gata, nao precisa mudar nada 😉`
             resultado.style.backgroundColor+= 'green';
             resultado.style.color += 'white'
+            res2.innerHTML="<img src='https://media4.giphy.com/media/26FLdmIp6wJr91JAI/giphy.gif?cid=ecf05e47nci71r3i5bnrfpims9tbada7wz4diwg1ucg9hlon&rid=giphy.gif&ct=g'>"
         }
 
         // if (imc <= 18.5){
