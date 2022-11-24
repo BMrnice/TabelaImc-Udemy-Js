@@ -1,43 +1,94 @@
-const tabelaImc = [
-    {imc:function(x){if(x <=18.5 ){return tabelaImc[0].resultado}}, resultado:'abaixo do peso'},
-    {imc:function(x){if(x >=18.5 && x <=24.9){return tabelaImc[1].resultado}} , resultado:'Peso Normal'},
-    {imc:function(x){if(x >=25 && x <=29.9){return tabelaImc[2].resultado}} , resultado:'Sobre peso'},
-    {imc:function(x){if(x >=30 && x <=34.9){return tabelaImc[3].resultado}} , resultado:'Obsidade grau 1'},
-    {imc:function(x){if(x >=35 && x <=39.9){return tabelaImc[4].resultado}} , resultado:'Obsidade grau 2'},
-    {imc:function(x){if(x >=40 ){return tabelaImc[5].resultado}} , resultado:'Obsidade grau 3'},
-];
+// primeira coisa fazer a captura de submit do formulário
+const form = document.getElementById('formulario');
 
-const resultadoImc = document.getElementById('resultado')
+    form.addEventListener('submit', function (e){
+        e.preventDefault();
+        let strPeso= document.getElementById('ipeso').value; //string
+        let strAltura= document.getElementById('ialtura').value; //string
+        let parsePeso = parseFloat(strPeso); // NUmber
+        let parseAltura = parseFloat(strAltura); // NUmber
+        let imc = getImc(parsePeso, parseAltura);//esta tem a formula de cal do IMC
+        let nivelImc = getIndiceDaTabelaImc(imc)//esta tras de um array a msg de acordo com o IMC da tabela  
+        let msg =  nivelImc ;
+        console.log(msg) 
+        
+        if (!parsePeso && !parseAltura){
+            setResultado('Por favor inserir somente numeros', false, imc)
+            return relload()             
+        }; //validado se input tem numeros
 
-function calcularImc(){
-    const peso = document.getElementById('ipeso').value;
-    const altura = document.getElementById('ialtura').value;
-    let numberPeso = parseFloat(peso);
-    let numberAltura = parseFloat(altura);
-    let PxA = numberAltura * numberPeso;
-    for(c=0;retornoDaTabela !== true;c++){ // talvez eu deva tentar com do while para testar a condicao apos fazer a let 
-        let retornoDaTabela = tabelaImc[c].imc(PxA) 
-        console.log(retornoDaTabela.resultado)
-        //resultadoImc.innerText += `${retornoDaTabela.resultado}`
-    }
-    // falta desenvolver o restante que vai pegar o valor multiplicado
-    // e passar por referencia para funcao dentro do array iterando em cada obejeto para achar o range do valor passado com o valor dentro do array da funcao. 
+        setResultado(msg, true, imc); // essa e a funcao que imprimi na tela o resultado
+    });
 
-   console.log(numberAltura , numberPeso )
-   resultadoImc.innerHTML = `altura :${numberAltura} Peso: ${numberPeso}`
-};
+    function getImc(x,y){
+        let imc = x / (y*y)
+        return imc.toFixed(2) // convertido para 2 decimal apos virgula
+    };
 
+    function getIndiceDaTabelaImc(imc){
+        const nivel = [`Você está com obesidade grau 3, seu IMC é ${imc}`,`Você está com obsidade grau 2, seu IMC é ${imc}`,`Você está com obsidade grau 1, seu IMC é ${imc}`,`Você está com sobrepeso, seu IMC é ${imc}`,`Você está com peso ideal, seu IMC é ${imc}`,`Você está abaixo do peso ideal, seu IMC é ${imc}`];
 
+        if (imc >=40) return nivel[0] //negativo
+        if (imc >=35 && imc <= 39.9) return nivel[1]// alerta
+        if (imc >=30 && imc <= 34.9) return nivel[2]// alerta
+        if (imc >=25 && imc <= 29.9) return nivel[3]// alerta
+        if (imc >= 18.5 && imc <=24.9) return nivel[4] //positivo
+        if (imc <=18.5) return nivel[5] //negativo
+    };
 
+    function relload(){
+         
+        addEventListener("click", function() { location.reload(); });
+    };
 
-// let imc = 25.8
-// function cal(x){
-//     if (x >18.5 && x < 24.9) {
-//         return 'normal'
-//     } 
-//     return 'gordao'
-// }
+    function criaP(){
+        let p = document.createElement('p');
+        return p;
+        
+    };
 
-console.log(tabelaImc.length) // quantidade de arrays
-
-console.log(tabelaImc[4].imc(37.9)) //aqui o valor passado por argumento é executado dentro do objeto do array
+    function setResultado (msg, isValid, imc){
+        let resultado = document.getElementById('resultado');
+        resultado.innerHTML = '';
+        const p = criaP();
+        if(isValid && imc >= 18.5 && imc <=24.9  ) {
+            p.classList.add('positivo')
+            console.log('positivo')
+        } else if(isValid && imc >=25 && imc <=39.9){
+            p.classList.add('alerta')
+            console.log('alerta')
+        } else if (!isValid || imc <=18.5 || imc >=40 ){
+            p.classList.add('negativo')
+            console.log('negativo')
+        }
+            
+        p.innerHTML = msg;
+        resultado.appendChild(p);
+    };
+ 
+      // if (imc <= 18.5){
+        //     resultado.innerHTML = `Você está abaixo do peso ideal, seu IMC é ${imc}`
+        //     resultado.style.backgroundColor= 'red';
+        //     resultado.style.color = 'white'
+        // } else if (imc >= 18.5 && imc <=24.9){
+        //     resultado.innerHTML = `Você está com peso ideal, seu IMC é ${imc}`
+        //     resultado.style.backgroundColor= 'green';
+        //     resultado.style.color = 'white'
+        // } else if (imc >=25 && imc <= 29.9){
+        //     resultado.innerHTML = `Você está com sobrepeso, seu IMC é ${imc}`
+        //     resultado.style.backgroundColor= 'yellow';
+        //     resultado.style.color = 'white'
+        // } else if (imc >=30 && imc <= 34.9){
+        //     resultado.innerHTML = `Você está com obsidade grau 1, seu IMC é ${imc}`
+        //     resultado.style.backgroundColor= 'yellow';
+        //     resultado.style.color = 'black'
+        // } else if (imc >=35 && imc <= 39.9){
+        //     resultado.innerHTML = `Você está com obsidade grau 2, seu IMC é ${imc}`
+        //     resultado.style.backgroundColor= 'yellow';
+        //     resultado.style.color = 'white'
+        // } else if (imc >=40){
+        //     resultado.innerHTML = `Você está com obesidade grau 3, seu IMC é ${imc}`
+        //     resultado.style.backgroundColor= 'red';
+        //     resultado.style.color = 'white'
+        
+    
