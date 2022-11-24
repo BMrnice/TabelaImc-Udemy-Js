@@ -22,7 +22,7 @@ const form = document.getElementById('formulario');
 
     function getImc(x,y){
         let imc = x / (y*y)
-        return imc.toFixed(2) // convertido para 2 decimal apos virgula
+        return imc.toFixed(1) // convertido para 2 decimal apos virgula
     };
 
     function getIndiceDaTabelaImc(imc){
@@ -48,6 +48,7 @@ const form = document.getElementById('formulario');
     };
 
     function setResultado (msg, isValid, imc){
+        console.log(imc)
         let resultado = document.getElementById('resultado');
         resultado.innerHTML = '';
         const p = criaP();
