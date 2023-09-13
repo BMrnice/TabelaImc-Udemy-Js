@@ -70,11 +70,13 @@ tbody > tr:nth-child(2n){ /*Comando para dar efeito zebrado */
   
 }
 
-.res p {
+.res  {
   text-align: center;
   padding: 5px;
 }
-
+#resultado3 {
+  visibility: hidden;
+}
 .positivo {
   background-color: rgba(87, 228, 146, 0.692);
 }
