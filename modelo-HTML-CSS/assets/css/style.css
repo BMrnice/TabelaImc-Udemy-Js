@@ -75,6 +75,7 @@ tbody > tr:nth-child(2n){ /*Comando para dar efeito zebrado */
   padding: 5px;
 }
 #resultado3 {
+  display: none;
   visibility: hidden;
 }
 .positivo {
